@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const saludar = function (){
+            console.log(`hola`);
+        }
+        saludar();
+
+        const saludar1 =() => console.log(`hola 1`);
+        
+       saludar1();
+       // Recibe nombre como parametro, no necesita ()
+       const saludar2 = nombre => console.log(`hola mi nombre es ${nombre}`)
+       saludar2("Cristian fabian illi");
+
+       const sumar = (a,b) => a+b;
+
+       console.log(sumar(10,3));
+
+       const perro ={
+        nombre:"pan",
+        ladrar(){
+            console.log(this)
+        }
+       }
+
+       perro.ladrar();
+
+
+    </script>
+</body>
+</html>
+
+
+
+

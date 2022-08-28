@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        const yo = {
+            nombre: "cristian",
+            apellido: "illi",
+            edad: 35,
+            residencia: "avellaneda",
+            soltero: false,
+            contacto: {
+                telefono: 1164944211,
+                email: "svrk73@gmail.com",
+                instagram: "svrk7373",
+            },
+            saludar: function () {
+                console.log(`hola perri`) //saludar es un metodo
+            },
+            decirMiNombre: function(){
+            //this hace referencia al mismo objeto
+                console.log(`Hola me llamo ${this.nombre} ${this.apellido} y tengo ${this.edad} años y me puedes seguir como ${this.contacto.instagram} en instagram`)
+            }
+        }
+    // Los objetos dentro de un objeto a las variables se los llama Atributos y las funciones se las llama Metodos
+        console.log(yo);
+        console.log(yo["nombre"]);
+         console.log(yo["apellido"]);
+         console.log(yo.contacto.email);
+
+        yo.saludar();
+
+        yo.decirMiNombre();
+
+        console.log(Object.keys(yo));
+
+        console.log(Object.values(yo));
+
+        console.log(yo.hasOwnProperty("nombre"));
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

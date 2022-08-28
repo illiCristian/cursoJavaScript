@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Programacion Orientada a Objetos 
+        // Clases -> Modelo a seguir
+        // Objetos -> Es una instancia de una clase
+        // Atributos -> Es una caracteristica o prepiedad del objeto (son variables dentro del objeto)
+        // Metodos -> Son las acciones que un objeto puede realizar (son funciones dentro de un objeto)
+
+        // Platon / Tratado de las ideas 
+        // Los objetos que nos rondean no son mas que la representacion fisica de una idea que tenemos en la cabeza
+
+        // CONSTRUCTOR (funcion)
+        // La funcion constructora de un protopito UpperCamelCase
+
+        function Animal(nombre,genero){
+            this.nombre = nombre;
+            this.genero = genero;
+
+            // Creo un metodo dentro del constructor Animal
+            this.sonar = function () {
+                console.log(`Hago sonidos por que estoy vivo y mi nombre es ${this.nombre}`);
+            }
+            this.saludar = function()
+            {
+                console.log(`Gua gua gua, Mi genero es ${this.genero}`)
+            }
+        }
+
+        const perro1 = new Animal ("pan","hembra");
+        const perro2 = new Animal ("pancho","macho");
+
+        //Invoco a los metodos que estan dentro de la funcion constructora
+        // perro1.saludar();
+        // perro1.sonar();
+        // perro2.saludar();
+        // perro2.sonar();
+
+        // Funcion Constructora donde asignamos los metodos al prototipo, no a la funcion como tal
+
+        function Animal(nombre,genero){
+            this.nombre = nombre;
+            this.genero = genero;
+
+        }
+    
+
+        // Metodos agregados al prototipo de la funcion constructora
+        Animal.prototype.sonar = function () {
+            console.log(`Hago sonidos por que estoy vivo y mi nombre es ${this.nombre}`);
+        }
+        Animal.prototype.saludar = function()
+        {
+            console.log(`Gua gua gua, Mi genero es ${this.genero}`)
+        }
+
+              //Invoco a los metodos que estan dentro de la funcion constructora
+              perro1.saludar();
+        perro1.sonar();
+        perro2.saludar();
+        perro2.sonar();
+    
+
+
+
+
+    </script>
+    
+</body>
+</html>

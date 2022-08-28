@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+// 9) Programa una función que obtenga un numero aleatorio entre 501 y 600.
+
+const numeroRandom = () => console.log(Math.round(Math.random()*100+500));
+
+// numeroRandom();
+// numeroRandom();
+// numeroRandom();
+// numeroRandom();
+// numeroRandom();
+
+
+// 10) Programa una función que reciba un número y evalúe si es capicúa o no (que se lee igual en un sentido que en otro), pe. miFuncion(2002) devolverá true.
+
+const capicua = (numero = 0) =>{
+    if (!numero) return console.warn("no ingresaste ningun numero");
+    if(typeof numero !=="number") return console.error(`El valor ${numero} no es un numero`);
+
+    numero = numero.toString();
+
+    alReves = numero.split("").reverse().join("");
+
+    return (numero === alReves) 
+    ? console.log(`${numero} y ${alReves} son capicua`)
+    : console.warn(`No son capicua Numero original ${numero} al reves ${alReves} `);
+}
+
+// capicua("0");
+// capicua({});
+// capicua();
+// capicua(334);
+// capicua(333);
+// capicua("asd");
+
+
+// 11) Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120. 
+
+const factorial = (numero = undefined) => {
+    if (!numero || numero < 1) return console.warn ("Ingresa solo numeros mayores que 1");
+    if(typeof numero !=="number") return console.error(`El valor ${numero} no es un numero`);
+
+    let factorial = 1;
+
+    for (let i = numero; i > 1 ; i--){
+        factorial *= i;
+    }
+    return console.info(`El factorial de ${numero} es ${factorial}`);
+}
+
+factorial(-1);
+factorial(0);
+factorial(1);
+factorial(2);
+factorial(5);
+factorial(2,3,4);
+
+
+    </script>
+</body>
+</html>

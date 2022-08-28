@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 27) Programa una clase llamada Pelicula.
+
+      //    La clase recibirá un objeto al momento de instanciarse con los siguentes datos: id de la película en IMDB, titulo, director, año de estreno, país o países de origen, géneros y calificación en IMBD.
+      //   - Todos los datos del objeto son obligatorios.
+      //   - Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y los
+      //      7 restantes números.
+      //   - Valida que el título no rebase los 100 caracteres.
+      //   - Valida que el director no rebase los 50 caracteres.
+      //   - Valida que el año de estreno sea un número entero de 4 dígitos.
+      //   - Valida que el país o paises sea introducidos en forma de arreglo.
+      //   - Valida que los géneros sean introducidos en forma de arreglo.
+      //   - Valida que los géneros introducidos esten dentro de los géneros
+      //      aceptados*.
+      //   - Crea un método estático que devuelva los géneros aceptados*.
+      //   - Valida que la calificación sea un número entre 0 y 10 pudiendo ser
+      //     decimal de una posición.
+      //   - Crea un método que devuelva toda la ficha técnica de la película.
+      //   - Apartir de un arreglo con la información de 3 películas genera 3
+      //     instancias de la clase de forma automatizada e imprime la ficha técnica
+      //     de cada película.
+    //   * Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.
+      class Pelicula {
+        constructor(id,titulo,director,año,pais,generos,calificacion) {
+          this.id = id;
+          this.titulo = titulo;
+          this.director = director;
+          this.año = año;
+          this.pais = pais;
+          this.generos = generos;
+          this.calificacion = calificacion;
+
+          this.validarIMDB(id);
+          this.validarTitulo(titulo);
+          this.validarDirector(director);
+          this.validarEstreno(año);
+          this.validarPais(pais);
+          this.validarGeneros(generos);
+          this.validarCalificacion(calificacion);
+        }
+
+        // * ! Creo un metodo para validar la ID, el metodo se ejecuta en el constructor, a la hora que se instancie hacemos las validaciones
+        // Creo un metodo estatico que me devuelve la lista de generos
+        // Creo un atributo estatico de metodo "Obtenedor" (getter)
+        // Los metodos getters y setter js los trabaja como atributos
+
+        //  Creo un atributo estatico de tipo get que se llama listaGeneros
+        static get listaGeneros(){
+            return ["Action", "Adult", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary" ,"Drama", "Family", "Fantasy", "Film Noir", "Game-Show", "History", "Horror","Musical", "Music", "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi", "Short","Sport", "Talk-Show", "Thriller", "War", "Western"]
+        }
+        // Creo un metodo estatico que usa el atributo estatico para mostrar la lista de generos
+        static generosAceptados(){
+            return console.info(`Los generos aceptados son: ${Pelicula.listaGeneros.join(", ")}`);
+        }
+        validarNumero(propiedad,valor){
+            if(!valor) return console.warn("Tiene que ingresar un valor");
+            if(typeof valor !=="number") return console.warn("Tiene que ingresar un numero");
+
+            return true;
+        }
+        validarCadena(propiedad, valor) {
+          if (!valor) return console.warn(` no puede ser un espacio vacio`);
+
+          if (typeof valor !== "string")
+            return console.warn(
+              ` tiene que ser una cadena de texto con numeros`
+            );
+
+          return true;
+        }
+        validarLongitudCadena(propiedad, valor, longitud) {
+          if (valor.length > longitud)
+            return console.error(
+              `${propiedad} ${valor} excede el numero de caracteres permitidos (${longitud})`
+            );
+          return true;
+        }
+        validarArreglo(propiedad,valor){
+            if(!valor) return console.warn(`${propiedad}"${valor} ingresado no es un arreglo"`);
+            if(!(valor instanceof Array)) return console.warn(`Tiene que ingresar un arreglo`);
+            if(valor.length === 0) return console.warn("No tiene datos");
+            for(let cadena of valor){
+                if(typeof cadena !=="string")return console.warn(`El valor ${valor} no es una cadena de texto`);
+            }
+            return true;
+            
+        }
+        validarIMDB(id) {
+          if (this.validarCadena("IMDBid", id))
+            if (!/^([a-z]){2}([0-9]){7}$/.test(id)) {
+              return console.warn(
+                `Imdb id ${id} No es un id valido de IMDB Debe tener 9 caracteres iniciando con 2 letras`
+              );
+            }
+        }
+
+        validarTitulo(titulo) {
+          if (this.validarCadena("Titulo", titulo))
+            this.validarLongitudCadena("Titulo", titulo, 100);
+        }
+        validarDirector(director) {
+          if (this.validarCadena("Director", director))
+            this.validarLongitudCadena("Director", director, 50);
+        }
+        validarEstreno(estreno) {
+          if (this.validarNumero("Año de estreno", estreno))
+            if (!/^([0-9]){4}$/.test(estreno)) {
+              return console.warn(
+                `Año de Estreno ${estreno} No es un id año valido Debe tener 4 numeros`
+              );
+            }
+        }
+        validarPais(pais){
+            this.validarArreglo("Pais",pais);
+        }
+        validarGeneros(generos){
+            if(this.validarArreglo("Generos",generos)){
+                for (let genero of generos) {
+            /**
+             *  A la lista de generos que es un arreglo le ejecuto el metodo includes, para buscar la palabra
+             *  ! Para invocar el metodo estatico litaGeneros no uso el this
+             *  Includes va a evaluar si un genero en la lista se encuentrae devuelve true
+                
+                    // console.log(genero,Pelicula.listaGeneros.includes(genero)); */
+                    if(!(Pelicula.listaGeneros.includes(genero))){
+                     console.error(`Genero(s) incorrectos "${generos.join(", ")}`);
+                     Pelicula.generosAceptados();
+                    }
+                }
+            }
+        }
+        validarCalificacion(calificacion) {
+          if (this.validarNumero("Calificacion", calificacion))
+            if (calificacion < 0 || calificacion > 10) {
+              return console.warn(
+                `Calificacion incorrecta ${calificacion}, Tiene que estar en un rango entre 0 y 10`
+              );
+            }
+            /**
+             * ? Con tofixed recorto el numero decimal 
+              */
+            this.calificacion = calificacion.toFixed(1)
+        }
+
+        fichaTecnica(){
+          console.info(`Ficha tecnica:\n"Titulo: ${this.titulo}"\n"Director: ${this.director}"Año de estreno: \n"${this.año}"\n"Pais de origen: ${this.pais.join(", ")}"\n"Genero: ${this.generos.join(", ")}"\n"Calificacion ${this.calificacion}"\n"Id ${this.id}"`);
+        }
+
+      }
+
+    //  Pelicula.generosAceptados();
+  /*     const peli = new Pelicula(
+        "tt1234567",
+        "batman",
+        "Nolan",
+        1998,
+        ["EE UU","Canada"],
+        ["Sport","Comedy"],
+        8.4,
+
+      );
+      peli.fichaTecnica(); */
+      
+      const peliculas = [
+        {
+          id:"tt1234567",
+          titulo: "batman",
+          director:"Nolan",
+          estreno: 1998,
+          pais:["EE UU","Canada"],
+          genero: ["Sport","Comedy"],
+          calificacion:8.4}
+        ];
+      
+      peliculas.forEach(el => new Pelicula(el).fichaTecnica());
+      
+    </script>
+  </body>
+</html>
+
+<!-- 
+// const validarIdImdb = (idImdb = "")=>{
+    //     if(idImdb === "") return console.warn("Tiene que ingrsar una cadena de texto como id");
+    //     if(typeof idImdb !=="string") console.warn("Tiene que ingrsar una cadena de texto como id");
+    //     if(idImdb.length !== 9) console.warn("El id tiene que tener 9 caracteeres");
+    
+    //     // let expreg1= /^([A-Z])\w{2}\d{7}/g.test(idImdb);
+    //      let expreg1= /\d{2}\w{7}/g.test(idImdb);
+    //     // let expReg = /^[a-zñáéíóú\s]+$/g.test(nombre);
+    
+    //     return (expreg1)
+    //     ?console.info (` "${idImdb}" Es un id valido`)
+    //     :console.info (` "${idImdb}" No es un id valido`)
+    
+    // }
+    
+    // const batman = new Pelicula ("ab1234567","The batman","Nolan",1998,"ee uu","ciencia ficcion",9.8); -->

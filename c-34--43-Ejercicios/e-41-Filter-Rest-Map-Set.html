@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+// 24) Programa una función que dado un arreglo de números devuelva un objeto con dos arreglos, el primero tendrá los numeros ordenados en forma ascendente y el segundo de forma descendiente, pe. miFuncion([7, 5,7,8,6]) devolverá { asc: [5,6,7,7,8], desc: [8,7,7,6,5] }.
+
+const ordenarNumeros = (arr = undefined) =>{
+    if (arr === undefined) return console.warn("Tienes que ingrsar un numero");
+    if (!(arr instanceof Array)) return console.warn("El valor que ingresaste no es un arreglo");
+    if (arr.length < 1) return console.warn("El arreglo esta vacio");
+
+    for (const num of arr) {
+        if(typeof num !=="number") return console.warn("El valor ingresado no es un numero ");
+    }
+
+    console.log({
+        arr,
+        // mayorAMenor:arr.sort(function(a, b){return a - b}),
+        // menorAMayor:arr.sort(function(a, b){return b - a})
+        // mayorAMenor:arr.map(el => el).sort(),
+        // menorAmayor:arr.map(el => el).sort().reverse()
+        // La funcion a-b Ordena de forma Ascendente y la funcion b-a Ordena de forma descendente
+        ascendente: arr.map((el) => el).sort((a, b) => a - b),
+        descendente: arr.map((el) => el).sort((a, b) => b - a)
+
+    });
+    
+}
+
+ordenarNumeros([1,2,3,5,4,3,33,44,55,22,11,21,34,98]);
+
+// 25) Programa una función que dado un arreglo de elementos, elimine los duplicados, pe. miFuncion(["x", 10, "x", 2, "10", 10, true, true]) devolverá ["x", 10, 2, "10", true].
+
+const removerDuplicados = (arr = undefined) => {
+    if (arr === undefined) console.warn("No ingresaste un arreglo");
+    if (arr.length < 2) console.warn("El arreglo tiene que tener mas de 2 elementos para filtrar los duplicados");
+
+    return console.info({
+        arr,
+        // sinDuplicados: arr.filter((value,index,self) => self.indexOf(value)=== index)
+        sinDuplicados: [...new Set(arr)]
+    });
+}
+
+removerDuplicados([10,"10","x",3,4,5,2,3,4,5]);
+
+
+
+// 26) Programa una función que dado un arreglo de números obtenga el promedio, pe. promedio([9,8,7,6,5,4,3,2,1,0]) devolverá 4.5.
+    
+
+    const promedio = (arr = undefined) =>{
+        if (arr === undefined) return console.warn("Tienes que ingrsar un numero");
+        if (!(arr instanceof Array)) return console.warn("El valor que ingresaste no es un arreglo");
+        if (arr.length < 1) return console.warn("El arreglo esta vacio");
+
+    for (const num of arr) {
+        if(typeof num !=="number") return console.warn("El valor ingresado no es un numero ");
+    }
+
+    return console.info(
+        
+        // total guarda el valor previo, num el el numero que esta recorriendo, index la posicion
+        arr.reduce((total,num,index,arr) =>{
+            total += num;
+            if(index === arr.length -1){
+                return `El promedio ${arr.join(" + ")} es ${total / arr.length}`;
+            }else {
+                return total;
+            }
+        })
+
+    )
+
+    }
+
+    console.warn("promedio");
+    promedio([1,2,3,4,5,6,7,8,9,10]);
+    promedio([1,2,3,4,5,6,7,8,9,10]);
+    promedio([8,8,8,8,8,8,8]);
+
+
+    </script>
+</body>
+</html>

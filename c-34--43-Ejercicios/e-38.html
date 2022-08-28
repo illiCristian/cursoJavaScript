@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+
+
+// 15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10.
+
+const convertirBinario = (numero = undefined, base = undefined) => {
+
+if (typeof numero !=="number") return console.warn("Solo se pueden ingresar numeros");
+if (typeof base !=="number") return console.warn("Solo se pueden ingresar numeros como base numerica");
+
+if (numero === undefined) return console.warn("Tienes que ingresar un numero");
+if (base === undefined) return console.warn("Tienes que ingresar un numero de base");
+
+
+if (base === 2){
+    return console.log (` El numero ${numero} base ${base} = ${parseInt(numero,base)} base 10`);
+}else if (base === 10){
+    return console.log (` El numero ${numero} base ${base} = ${(numero.toString(base))} base 2`);
+}else{
+    return console.error(`El tipo de base a convertir no es valido`);
+}
+
+}
+
+// convertirBinario();
+// convertirBinario();
+// convertirBinario(10);
+// convertirBinario(10,2);
+// convertirBinario(100,2);
+// convertirBinario(4,10);
+// convertirBinario(114,10);
+// convertirBinario(114,3);
+
+// 16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800.
+
+const aplicarDescuento = (numero = undefined, descuento = 0) => {
+    if (numero === undefined) return console.error(`Tiene que ingrsar el monto y el descuento a aplicar`);
+    if (typeof numero !=="number") return console.error(`El valor ${numero} tiene que ser un numero`);
+    if (typeof descuento !=="number") return console.error(`El valor ${descuento} tiene que ser un numero`);
+    if (Math.sign(numero) === -1) return console.error(`El monto no puede ser negativo`);
+    if (Math.sign(descuento) === -1) return console.error(`El monto no puede ser negativo`);
+    if (numero === 0) return console.error (`El monto no puede ser cero`);
+    let final = numero - (numero * descuento /100);
+
+    return console.log(`El monto final con descuento es = ${final}`);
+}
+
+aplicarDescuento(0);
+aplicarDescuento (-2,3);
+aplicarDescuento (1000,20);
+aplicarDescuento (2000,20);
+
+// 17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
+
+// [] instanceof Array 
+
+const calcularAnios = (fecha = undefined) => {
+    if(fecha === undefined) return console.error("Tiene que ingresar una fecha");
+
+    // cuando la fecha no sea instancia del prototipo date,
+    // Cualquier cosa diferente date va a retornar un error 
+    if (!(fecha instanceof Date)) return console.error(`No ingresaste una fecha valida`);
+
+    let hoyMenosFecha = new Date().getTime() - fecha.getTime(),
+    aniosEnMs = 1000 * 60 * 60 * 24 * 365,
+    aniosHumanos = Math.floor(hoyMenosFecha / aniosEnMs);
+
+    return (Math.sign(aniosHumanos)=== -1) 
+    // math.abs para obetener el valor absoluto
+    ? console.info(`Faltan ${Math.abs(aniosHumanos)} años para el ${(fecha.getFullYear())} `)
+    : (Math.sign(aniosHumanos)=== 1)
+    ? console.info(`Han pasado ${aniosHumanos} años desde ${fecha.getFullYear()}.`)
+    : console.info(`Estamos en el año actual`);
+
+}
+
+    calcularAnios();
+    calcularAnios(1998,3,4);
+    calcularAnios(new Date());
+    calcularAnios(new Date(1988,2,3));
+    calcularAnios(new Date(2988,2,3));
+    calcularAnios(new Date());
+
+    </script>
+</body>
+</html>

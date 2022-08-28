@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // OPERADOR REST
+        function sumar(a,b,...c){
+            resultado = a+b;
+        // for each recibe una funcion por cada elemento que recibe en c
+        // recorre un for por cada elemtno que recibe como parametro
+            c.forEach(function(n){
+                resultado +=n
+            });
+
+            return resultado; 
+
+        }
+
+        console.log(sumar(1,4,4,4,4))
+
+        // Operador de propagacion SPREAD
+        const arr1 =[1,2,3,4,5,6];
+        const arr2=[7,8,9,10,13,0.1];
+
+        console.log(arr1,arr2);
+
+        //  
+        const arr3 = [...arr1,...arr2];
+        console.log(arr3);
+    </script>
+</body>
+</html>

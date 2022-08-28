@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //         1) Programa una función que cuente el número de caracteres de una cadena de texto, pe.miFuncion("Hola Mundo") devolverá 10.
+
+        function contarCadena(cadena) {
+            if (typeof cadena === "string") {
+                const a = cadena.length;
+                return console.log(`La cadena tiene ${a} caracteres`);
+
+            }
+            else {
+                return console.log("no es una cadena de texto");
+            }
+        }
+        // Resuelta por el profesor arrow function
+
+        const contarCadena2 = (cadena = "") => (!cadena) ? console.warn("No ingresaste ninguna cadena") : console.info(`La cadena ${cadena} tiene ${cadena.length} caracteres`)
+
+        // Ejemplo Arrow function a + b
+        const sumar = (a, b) => (typeof a === "number" && typeof b === "number") ? a + b : console.warn("solo se pueden sumar numeros");
+        // 
+
+        contarCadena("saludo amigo");
+        contarCadena(2);
+        contarCadena("");
+        console.log(contarCadena2("Hola mundoooo"))
+
+        console.log(sumar(2, 4));
+        console.log(sumar(2, "b"));
+
+
+
+
+        //         2) Programa una función que te devuelva el texto recortado según el número de caracteres indicados, pe.miFuncion("Hola Mundo", 4) devolverá "Hola".
+
+        // function recotarTexto(cadena,b){
+        //     if(typeof cadena === "string"){
+        //         return cadena.slice(0,b);
+        //     }
+        //     else{
+        //         return console.log("no es una cadena de texto");
+        //     }
+        // }
+        const recotarTexto = (cadena, b = undefined) => (typeof cadena === "string") ? cadena.slice(0, b) : console.log("no es una cadena de texto");
+
+        const palabra = "hello moto";
+
+        console.log(recotarTexto(palabra, 4));
+        console.log(recotarTexto(2, 2));
+
+
+
+
+
+        //         3) Programa una función que dada una String te devuelva un Array de textos separados por cierto caracter, pe.miFuncion('hola que tal', ' ') devolverá['hola', 'que', 'tal'].
+        const split = (cadena, b = undefined) => (typeof cadena === "string") ? cadena.split(b) : console.log("no es una cadena de texto o no ingresaste");
+        // function split (cadena,b){
+        //     if (typeof cadena === "string") {
+        //         return cadena.split(b);
+        //     }
+        //     else{
+        //         return console.log("no es una cadena de texto");
+        //     }
+        // }
+        console.log(split("Hola, como andas, tanto tiempo, todo bien?", ","));
+
+
+
+
+
+
+        //         4) Programa una función que repita un texto X veces, pe.miFuncion('Hola Mundo', 3) devolverá Hola Mundo Hola Mundo Hola Mundo.
+
+        // function repetirCadena(cadena, b) {
+        //     if (typeof cadena === "string") {
+        //         return cadena.repeat(b);
+        //     }
+        //     return console.log("no es una cadena de texto");
+        // }
+        // Version Corregida
+        const repetirTexto = (texto="", veces = undefined) => {
+            if(!texto) return console.warn("No ingresaste el texto");
+            if(typeof veces !=="number") return console.error("No ingresaste un numero de veces");
+            if(veces === undefined)return console.warn("No ingresaste la cantidad de veces");
+            if(veces === 0) return console.error("Ingrsa un numero mayor a cero");
+            if(Math.sign(veces)=== -1) return console.error("El numero de veces no puede ser negativo");
+
+            for (let i = 1; i <= veces; i++) {
+                console.log(`${texto}, ${i}`);
+                
+            }
+
+        }
+        repetirTexto("Buenas tardes America",10);
+        repetirTexto("Buenas tardes America",0);
+        repetirTexto("Buenas tardes America",-10);
+        repetirTexto("Buenas tardes America","asd");
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // function Animal(nombre,genero){
+        //     this.nombre = nombre;
+        //     this.genero = genero;
+
+        //     // Creo un metodo dentro del constructor Animal
+        //     this.sonar = function () {
+        //         console.log(`Hago sonidos por que estoy vivo y mi nombre es ${this.nombre}`);
+        //     }
+        //     this.saludar = function()
+        //     {
+        //         console.log(`Gua gua gua, Mi genero es ${this.genero}`)
+        //     }
+        // }
+
+        // Las clases no reciben parametros, tiene un metodo constructor para recibir los parametros
+        class Animal {
+            // El constructor de una clase es un metodo especial que se ejecuta en el momento de instanciar la clase
+            constructor(nombre, genero) {
+                this.nombre = nombre;
+                this.genero = genero;
+            }
+
+            // Metodos dentro de una clase
+            sonar() {
+                console.log(`Hago sonidos por que estoy vivo`);
+            }
+            saludar() {
+                console.log(`Gua gua gua, Mi nombre es ${this.nombre}`)
+            }
+        }
+
+
+        // > Herencia
+        // > Como le digo a la clase Perro que herede el prototypo Animal?
+
+        class Perro extends Animal {
+
+            constructor(nombre, genero, tamanio) {
+                // Con el metodo "super" se manda a llamar el constructor de la clase padre
+                // En este caso la clase padre es Animal
+                super(nombre, genero);
+                this.tamanio = tamanio;
+                // 
+                this.raza = null;
+            }
+
+            sonar() {
+                console.log(`Hago sonidos por que estoy vivo`);
+            }
+            ladrar() {
+                console.log(`Gua gua gua`)
+            }
+            // Un metodo Estatico es aquel que se puede instanciar sin la necesidad de haber creado la clase
+             static queEres(){
+                // por la definicion static puedo ejecutarlo sin la necesidad de haber creado un objeto del tipo al que pertenece la clase
+                console.log("hola soy un perro gua gua gua y me gusta jugar con la pelota")
+             }
+
+            //  Los getters y los setters son metodos especiales que nos permiten obetener y establecer valores de atributos a nuestra clase 
+            get getRaza (){
+                return this.raza;
+            }
+            set setRaza(raza){
+                this.raza = raza;
+            }
+        }
+
+
+        const mimi = new Animal("pan", "hembra"),
+        scooby = new Perro("scooby", "macho","Caniche");
+
+        console.log(mimi);
+        mimi.saludar();
+        mimi.sonar();
+        console.log(scooby);
+        scooby.saludar();
+        scooby.sonar();
+
+        Perro.queEres();
+        scooby.setRaza = "Caniche";
+        console.log(scooby.getRaza);
+
+    </script>
+
+</body>
+
+</html>

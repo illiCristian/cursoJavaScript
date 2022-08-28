@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // function Animal(nombre,genero){
+        //     this.nombre = nombre;
+        //     this.genero = genero;
+
+        //     // Creo un metodo dentro del constructor Animal
+        //     this.sonar = function () {
+        //         console.log(`Hago sonidos por que estoy vivo y mi nombre es ${this.nombre}`);
+        //     }
+        //     this.saludar = function()
+        //     {
+        //         console.log(`Gua gua gua, Mi genero es ${this.genero}`)
+        //     }
+        // }
+
+
+        //Invoco a los metodos que estan dentro de la funcion constructora
+        // perro1.saludar();
+        // perro1.sonar();
+        // perro2.saludar();
+        // perro2.sonar();
+
+        // Funcion Constructora donde asignamos los metodos al prototipo, no a la funcion como tal
+
+        function Animal(nombre, genero) {
+            this.nombre = nombre;
+            this.genero = genero;
+
+        }
+
+
+        // Metodos agregados al prototipo de la funcion constructora
+        Animal.prototype.sonar = function () {
+            console.log(`Hago sonidos por que estoy vivo y mi nombre es ${this.nombre}`);
+        }
+        Animal.prototype.saludar = function () {
+            console.log(`Gua gua gua, Mi genero es ${this.genero}`)
+        }
+
+        //HERENCIA PROTOTIPICA
+        function Perro(nombre,genero,tamanio){
+            this.super =Animal;
+            this.super(nombre,genero);
+            this.tamanio = tamanio;
+        } 
+        // Perro esta heredando de Animal
+        Perro.prototype = new Animal();
+        // Genero su propio constructor a la funcion constructora perro
+        Perro.prototype.constructor = Perro;
+
+        // Los metodos creados en los prototipos padres se heredan a los hijos
+        // y tambien se pueden sobreEscribir los metodos del padre
+        Perro.prototype.sonar = function(){
+            console.log(`Soy un perro y mis sonidos son ladridos`)
+        }
+        Perro.prototype.ladrar = function(){
+            console.log(`GUA GUA `)
+        }
+
+
+
+
+        //Invoco a los metodos que estan dentro de la funcion constructora
+        const perro1 = new Animal("pan", "hembra","mediano");
+        const perro2 = new Animal("pancho", "macho");
+
+        perro1.saludar();
+        perro1.sonar();
+        perro2.saludar();
+        perro2.sonar();
+
+
+
+
+
+    </script>
+</body>
+
+</html>
